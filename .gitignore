@@ -130,7 +130,10 @@ dmypy.json
 
 # numpy archive
 *.npz
+*.npy
 
 # histgram
 hist/
 hist_flow/
+len_hist/
+time_gap_hist/
