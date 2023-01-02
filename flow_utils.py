@@ -1,6 +1,8 @@
 import numpy
-from flow_conf import FLOW_CALC_DURATION
-def flow(data:numpy.ndarray)->list:
+from flow_conf import FLOW_CALC_DURATION, HIST_BINS, HIST_UPPER_RANGE
+
+
+def flow(data: numpy.ndarray) -> list:
     times = data["times"] - data["times"][0]
     flow = []
     start_index, end_index = 0, 0
@@ -15,5 +17,12 @@ def flow(data:numpy.ndarray)->list:
             end_index += 1
     return flow
 
-def compare_hist(a:numpy.ndarray,b:numpy.ndarray)->float:
+
+def flow_normed_hist(f: list) -> numpy.ndarray:
+    f = numpy.array(f)
+    h = numpy.histogram(f, HIST_BINS, (0, HIST_UPPER_RANGE))[0]
+    return h/numpy.sum(h)
+
+
+def compare_hist(a: numpy.ndarray, b: numpy.ndarray) -> float:
     return float(numpy.sum((a-b)**2))
