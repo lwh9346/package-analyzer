@@ -8,14 +8,18 @@ import matplotlib
 matplotlib.use('agg')
 from matplotlib import pyplot as plt
 
+plt.rcParams["font.family"] = ["sans-serif"]
+plt.rcParams["font.sans-serif"] = ['SimHei']
+
+
 def box_plot(box_data, title, labels, vert=False):
     fig_path = os.path.join('boxplots', f'{title}-boxplot-log10.png')
     color_list = ['lightgreen', 'orange', 'deepskyblue']
     # 水平箱线图
     plt.figure(figsize=(20, 8))
-    plt.title(title, fontsize=20)
+    # plt.title(title, fontsize=40, fontproperties="SimHei")
     f = plt.boxplot(box_data, labels=labels, vert=vert, showmeans=True, patch_artist=True, showfliers=True)
-    plt.tick_params(labelsize=16)
+    plt.tick_params(labelsize=30)
     for box, c in zip(f["boxes"], color_list): # 对箱线图设置颜色
         box.set(color=c, linewidth=2)
         box.set(facecolor=c)
@@ -52,11 +56,13 @@ for class_name in box_data.keys():
 
 # 绘制箱线图
 for statistic in ["lens", "timegap", "flow"]:
+    print(statistic)
     data = []
     labels = []
     for class_name, v in box_data.items():
         labels.append(class_name)
         # data.append(v[statistic])
         data.append(log(v[statistic]+1, 10)) # 以10为底取对数
+        print(class_name, 'mean:', np.mean(v[statistic]), 'variance:', np.var(v[statistic]))
 
     box_plot(data, statistic, labels)
