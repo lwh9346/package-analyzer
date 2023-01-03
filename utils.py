@@ -4,9 +4,9 @@ import numpy
 
 class DataFiles():
     def __init__(self, path="data") -> None:
-        classes = os.listdir(path)
+        self.classes = os.listdir(path)
         self._df = []
-        for class_name in classes:
+        for class_name in self.classes:
             data_filenames = os.listdir(f"{path}/{class_name}")
             for data_filename in data_filenames:
                 data_basename = ".".join(data_filename.split(".")[:-1])
