@@ -18,6 +18,7 @@ def box_plot(box_data, title, labels, vert=False):
     # 水平箱线图
     plt.figure(figsize=(20, 8))
     # plt.title(title, fontsize=40, fontproperties="SimHei")
+
     f = plt.boxplot(box_data, labels=labels, vert=vert, showmeans=True, patch_artist=True, showfliers=True)
     plt.tick_params(labelsize=30)
     for box, c in zip(f["boxes"], color_list): # 对箱线图设置颜色
@@ -55,6 +56,8 @@ for class_name in box_data.keys():
     box_data[class_name]["flow"] = np.reshape(np.array(box_data[class_name]["flow"], dtype=np.float32).reshape(-1), (-1))
 
 # 绘制箱线图
+
+
 for statistic in ["lens", "timegap", "flow"]:
     print(statistic)
     data = []
