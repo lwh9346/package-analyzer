@@ -14,6 +14,7 @@ for c,b,d in utils.DataFiles("hist_A"):
         correct[c]+=1
     else:
         wrong[c]+=1
+        print(f"分类错误:未知样本:{b},实际类型:{c},最佳匹配:{best_match[2]},匹配类型:{best_match[1]}")
 print("correct")
 print(correct)
 print("wrong")
@@ -31,6 +32,7 @@ for c,b,d in utils.DataFiles("hist_B"):
         correct[c]+=1
     else:
         wrong[c]+=1
+        print(f"分类错误:未知样本:{b},实际类型:{c},最佳匹配:{best_match[2]},匹配类型:{best_match[1]}")
 print("correct")
 print(correct)
 print("wrong")
