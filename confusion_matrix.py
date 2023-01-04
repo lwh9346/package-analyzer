@@ -7,9 +7,9 @@ from matplotlib import rcParams
 
 classes = ['video', 'streaming', 'browsing']
 confusion_matrix = np.array(
-    [[4, 1, 1],
-     [1, 14, 3],
-     [0, 0, 4]
+    [[2, 2, 2],
+     [0, 16, 2],
+     [1, 0, 3]
      ], dtype=np.int)  # 输入特征矩阵
 proportion = []
 length = len(confusion_matrix)
@@ -46,17 +46,17 @@ thresh = confusion_matrix.max() / 2.
 iters = np.reshape([[[i, j] for j in range(length)] for i in range(length)], (confusion_matrix.size, 2))
 for i, j in iters:
     if (i == j):
-        plt.text(j, i - 0.12, format(confusion_matrix[i, j]), va='center', ha='center', fontsize=10, color='white',
+        plt.text(j, i - 0.12, format(confusion_matrix[i, j]), va='center', ha='center', fontsize=16, color='white',
                  weight=5)  # 显示对应的数字
-        plt.text(j, i + 0.12, pshow[i, j], va='center', ha='center', fontsize=10, color='white')
+        plt.text(j, i + 0.12, pshow[i, j], va='center', ha='center', fontsize=16, color='white')
     else:
-        plt.text(j, i - 0.12, format(confusion_matrix[i, j]), va='center', ha='center', fontsize=10)  # 显示对应的数字
-        plt.text(j, i + 0.12, pshow[i, j], va='center', ha='center', fontsize=10)
+        plt.text(j, i - 0.12, format(confusion_matrix[i, j]), va='center', ha='center', fontsize=16)  # 显示对应的数字
+        plt.text(j, i + 0.12, pshow[i, j], va='center', ha='center', fontsize=16)
 
 plt.ylabel('True label', fontsize=16)
 plt.xlabel('Predict label', fontsize=16)
 plt.tight_layout()
 plt.show()
-plt.savefig('已知A未知B.png')
+plt.savefig('knowB.png')
 
 
